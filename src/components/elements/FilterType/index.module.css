@@ -1,0 +1,19 @@
+.container {
+  background-color: #ffffff;
+  border: 1px solid #aeb7e1;
+  color: #aeb7e1;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #cfd4ed;
+  border: 1px solid #0d28a6;
+  color: #0d28a6;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+}
