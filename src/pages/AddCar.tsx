@@ -3,6 +3,7 @@ import FormCar from "../components/elements/FormCar/FormCar";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { Car } from "../types/types";
+import toast from "../utils/toast";
 
 const AddCar = () => {
   const navigate = useNavigate();
@@ -56,8 +57,12 @@ const AddCar = () => {
         updatedAt: new Date(),
       });
 
-      alert("Data mobil berhasil ditambahkan");
       navigate("/admin/cars");
+      toast("Data Berhasil Disimpan", {
+        type: "success",
+        autoClose: 2000,
+        position: "top-center",
+      });
     } catch (error) {
       console.log(error);
     }

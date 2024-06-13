@@ -4,6 +4,7 @@ import { CarProps } from "../../../types/types";
 import api from "../../../api";
 import formatDate from "../../../utils/formatDate";
 import formatRupiah from "../../../utils/formatRupiah";
+import toast from "../../../utils/toast";
 
 const CardManage = ({ car }: CarProps) => {
   const navigate = useNavigate();
@@ -14,9 +15,13 @@ const CardManage = ({ car }: CarProps) => {
     try {
       await api.delete(`/cars/${id}`);
 
-      alert("Data mobil berhasil dihapus");
       setIsShow(false);
       navigate("/admin/cars");
+      toast("Data Berhasil Dihapus", {
+        type: "success",
+        autoClose: 2000,
+        position: "top-center",
+      });
     } catch (error) {
       console.log(error);
     }

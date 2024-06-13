@@ -3,6 +3,7 @@ import { IForm } from "./types";
 import CardList from "../CardList/CardList";
 import api from "../../../api";
 import { Car } from "../../../types/types";
+import toast from "../../../utils/toast";
 
 const FilterCar: React.FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -154,9 +155,15 @@ const FilterCar: React.FC = () => {
       </div>
 
       <div id="filtered-car" className="row">
-        {carFilter?.map((car, i) => (
-          <CardList car={car} key={i} />
-        ))}
+        {carFilter.length !== 0 ? (
+          carFilter.map((car, i) => <CardList car={car} key={i} />)
+        ) : (
+          <div style={{ backgroundColor: "#D00C1A1A" }}>
+            <p className="p-3 m-0 text-danger text-center fw-semibold">
+              Data tidak ditemukan
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

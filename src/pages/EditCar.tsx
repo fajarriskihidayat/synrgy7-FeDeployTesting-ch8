@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import FormCar from "../components/elements/FormCar/FormCar";
 import api from "../api";
 import { Car } from "../types/types";
+import toast from "../utils/toast";
 
 const EditCar = () => {
   const { id } = useParams();
@@ -69,8 +70,12 @@ const EditCar = () => {
         updatedAt: new Date(),
       });
 
-      alert("Data mobil berhasil diedit");
       navigate("/admin/cars");
+      toast("Data Berhasil Diubah", {
+        type: "success",
+        autoClose: 2000,
+        position: "top-center",
+      });
     } catch (error) {
       console.log(error);
     }

@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { User } from "../types/types";
+import { useState } from "react";
+import toast from "../utils/toast";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
-  // const [users, setUser] = useState<User[]>([]);
   const [isError, setIsError] = useState<boolean>(false);
   const [data, setData] = useState({ email: "", password: "" });
 
@@ -17,36 +17,19 @@ const Login = () => {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ data });
-    if (data.email === "admin@gmail.com" && data.password === "admin123") {
-      alert("Login berhasil");
-      localStorage.setItem("auth", "true");
-      navigate("/admin/dashboard");
+
+    if (data.email === "admin@gmail.com" && data.password === "123") {
+      toast("Login berhasil", { type: "success", autoClose: 2000 });
+
+      setTimeout(() => {
+        localStorage.setItem("auth", "true");
+        navigate("/admin/dashboard");
+      }, 2500);
       return;
     }
 
     setIsError(true);
-
-    // const auth = users.find(
-    //   (user) => user.email === data.email && user.password === data.password
-    // );
-    // console.log(auth);
-    // console.log(data);
-    // if (auth) {
-    //   localStorage.setItem("user", JSON.stringify(auth));
-    //   navigate("/admin/dashboard");
-    // } else {
-    //   alert("Invalid email or password");
-    // }
   };
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8000/users")
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => setUser(data));
-  // }, []);
 
   return (
     <div className="overflow-x-hidden overflow-hidden">
@@ -114,6 +97,8 @@ const Login = () => {
           </div>
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };
