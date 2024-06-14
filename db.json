@@ -1,18 +1,4 @@
 {
-  "users": [
-    {
-      "id": "1",
-      "email": "admin@gmail.com",
-      "password": "12345",
-      "role": "admin"
-    },
-    {
-      "id": "2",
-      "email": "member@gmail.com",
-      "password": "12345",
-      "role": "member"
-    }
-  ],
   "cars": [
     {
       "id": "6e2bc663-5197-441a-957b-bc75e4a2da7c",
@@ -838,16 +824,16 @@
       "manufacture": "Honda",
       "model": "Civic",
       "image": "/assets/car25.min.jpg",
-      "rentPerDay": 1000000,
+      "rentPerDay": "1000000",
       "capacity": 2,
       "description": " Electric speed-sensitive variable-assist pwr steering. Steel side-door impact beams. Dual bright exhaust tips.",
       "availableAt": "2022-03-23T15:49:05.563Z",
       "transmission": "CVT",
-      "available": false,
+      "available": true,
       "type": "Wagon",
       "year": 2015,
       "size": "Small",
-      "updatedAt": "2024-06-11T08:42:19.374Z",
+      "updatedAt": "2024-06-14T08:11:05.373Z",
       "options": [
         "CD (Single Disc)",
         "Airbag: Passenger",
@@ -866,6 +852,19 @@
         "Remote fuel lid release",
         "Traveler/mini trip computer"
       ]
+    },
+    {
+      "id": "94f4",
+      "manufacture": "Supra ",
+      "type": "MK4",
+      "rentPerDay": "5000000",
+      "size": "Large",
+      "capacity": "2",
+      "available": true,
+      "transmission": "Automanual",
+      "year": 2021,
+      "image": "https://imgx.gridoto.com/crop/0x0:0x0/700x465/photo/2021/06/23/1994-toyota-supra-2jpg-20210623074133.jpg",
+      "updatedAt": "2024-06-14T08:38:22.963Z"
     }
   ]
 }

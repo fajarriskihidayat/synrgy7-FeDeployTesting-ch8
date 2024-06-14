@@ -53,9 +53,13 @@ const EditCar = () => {
       !data.type ||
       !data.rentPerDay ||
       !data.size ||
-      !data.capacity
+      !data.capacity ||
+      !data.image
     ) {
-      return alert("Data tidak boleh kosong");
+      return toast("Data Tidak Boleh Kosong", {
+        type: "warning",
+        autoClose: 2000,
+      });
     }
 
     try {
@@ -67,6 +71,7 @@ const EditCar = () => {
         size: data.size,
         capacity: data.capacity,
         available: true,
+        image: data.image,
         updatedAt: new Date(),
       });
 

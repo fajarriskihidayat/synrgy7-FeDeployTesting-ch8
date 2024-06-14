@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const auth = localStorage.getItem("auth");
+
   return (
     <nav
       className="navbar navbar-expand-lg py-2 fixed-top"
@@ -60,9 +62,51 @@ const Navbar = () => {
                   FAQ
                 </a>
               </li>
-              <Link to="/login" className="btn text-light">
-                Register
-              </Link>
+              {auth ? (
+                <div className="d-flex ">
+                  <div className="btn-group">
+                    <p
+                      className="btn dropdown-toggle fs-6 align-items-center d-flex gap-2 mb-0"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      style={{ backgroundColor: "transparent", border: 0 }}
+                    >
+                      <i className="fa-solid fa-circle text-secondary fs-2"></i>{" "}
+                      admin@gmail.com
+                    </p>
+                    <ul className="dropdown-menu">
+                      <li className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item">
+                        <i
+                          className={"fas fa-sharp fa-house fs-5"}
+                          style={{ color: "#0d28a6" }}
+                        ></i>
+                        <Link
+                          to="/admin/dashboard"
+                          className="text-black bg-transparent text-decoration-none fw-semibold"
+                        >
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item">
+                        <i
+                          className={"fas fa-car-side fs-5"}
+                          style={{ color: "#0d28a6" }}
+                        ></i>
+                        <Link
+                          to="/admin/cars"
+                          className="text-black bg-transparent text-decoration-none fw-semibold"
+                        >
+                          Cars
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <Link to="/login" className="btn text-light">
+                  Register
+                </Link>
+              )}
             </ul>
           </div>
         </div>

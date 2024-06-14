@@ -38,9 +38,13 @@ const AddCar = () => {
       !data.type ||
       !data.rentPerDay ||
       !data.size ||
-      !data.capacity
+      !data.capacity ||
+      !data.image
     ) {
-      return alert("Data tidak boleh kosong");
+      return toast("Data Tidak Boleh Kosong", {
+        type: "warning",
+        autoClose: 2000,
+      });
     }
 
     try {
@@ -53,7 +57,7 @@ const AddCar = () => {
         available: true,
         transmission: "Automanual",
         year: 2021,
-        image: "/assets/car19.min.jpg",
+        image: data.image,
         updatedAt: new Date(),
       });
 
