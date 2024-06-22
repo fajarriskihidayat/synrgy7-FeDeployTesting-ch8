@@ -1,34 +1,31 @@
 export interface Car {
-  id?: string;
-  plate?: string;
-  manufacture?: string;
-  model?: string;
-  image: string;
-  rentPerDay?: number;
-  capacity: number;
-  description?: string;
-  availableAt?: Date;
-  transmission?: Transmission | "";
-  available?: boolean;
-  type?: string;
-  year?: number;
-  size?: Size | "";
-  updatedAt?: string;
-  options?: string[];
-  specs?: string[];
+  id: number;
+  name: string;
+  rentPerDay: number;
+  img_url: string;
+  size: Size | number;
+  isDeleted: number;
+  createdBy: number | null;
+  updatedBy: number | null;
+  deletedBy: number | null;
+  createBy: IBy | null;
+  updateBy: IBy | null;
+  deleteBy: IBy | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IBy {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
 }
 
 export enum Size {
-  Large = "Large",
-  Medium = "Medium",
-  Small = "Small",
-}
-
-export enum Transmission {
-  Automanual = "Automanual",
-  Automatic = "Automatic",
-  Cvt = "CVT",
-  Manual = "Manual",
+  Large = "large",
+  Medium = "medium",
+  Small = "small",
 }
 
 export interface CarsProps {
@@ -44,4 +41,19 @@ export interface User {
   email: string;
   password: string;
   role: string;
+}
+
+export interface IJWTDecoded {
+  id: number;
+  email: string;
+  exp: number;
+  iat: number;
+}
+
+export interface IForm {
+  name: string;
+  rentPerDay: number;
+  size_id: string;
+  picture: null;
+  img_url?: "";
 }

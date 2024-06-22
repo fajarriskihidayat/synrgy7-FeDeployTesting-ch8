@@ -1,46 +1,36 @@
 import { useState } from "react";
 import FormCar from "../components/elements/FormCar/FormCar";
-import api from "../api";
 import { useNavigate } from "react-router-dom";
-import { Car } from "../types/types";
+import { IForm } from "../types/types";
 import toast from "../utils/toast";
+import { useDispatchAuth } from "../context/AuthContext";
 
 const AddCar = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState<Car>({
-    id: "",
-    manufacture: "",
-    type: "",
+  const { apiJWT } = useDispatchAuth();
+  const [data, setData] = useState<IForm>({
+    name: "",
     rentPerDay: 0,
-    size: "",
-    capacity: 0,
-    available: false,
-    transmission: "",
-    year: 0,
-    image: "",
-    updatedAt: "",
+    size_id: "",
+    picture: null,
   });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    const target = e.target as HTMLInputElement & {
+      files: FileList;
+    };
     setData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [target.name]: target.name === "picture" ? target.files[0] : target.value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      !data.manufacture ||
-      !data.type ||
-      !data.rentPerDay ||
-      !data.size ||
-      !data.capacity ||
-      !data.image
-    ) {
+    if (!data.name || !data.rentPerDay || !data.size_id || !data.picture) {
       return toast("Data Tidak Boleh Kosong", {
         type: "warning",
         autoClose: 2000,
@@ -48,17 +38,10 @@ const AddCar = () => {
     }
 
     try {
-      await api.post("/cars", {
-        manufacture: data.manufacture,
-        type: data.type,
-        rentPerDay: data.rentPerDay,
-        size: data.size,
-        capacity: data.capacity,
-        available: true,
-        transmission: "Automanual",
-        year: 2021,
-        image: data.image,
-        updatedAt: new Date(),
+      await apiJWT.post("/cars", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
       navigate("/admin/cars");

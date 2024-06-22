@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const auth = localStorage.getItem("auth");
+  const token = localStorage.getItem("token");
 
   return (
     <nav
@@ -62,7 +62,7 @@ const Navbar = () => {
                   FAQ
                 </a>
               </li>
-              {auth ? (
+              {token ? (
                 <div className="d-flex ">
                   <div className="btn-group">
                     <p

@@ -13,13 +13,13 @@ const FIlterType = ({ cars }: CarsProps) => {
     if (isActive === "All") {
       setDatas(cars);
     } else if (isActive === "Small") {
-      const data = cars.filter((car) => car.size === "Small");
+      const data = cars.filter((car) => car.size === "small");
       setDatas(data);
     } else if (isActive === "Medium") {
-      const data = cars.filter((car) => car.size === "Medium");
+      const data = cars.filter((car) => car.size === "medium");
       setDatas(data);
     } else if (isActive === "Large") {
-      const data = cars.filter((car) => car.size === "Large");
+      const data = cars.filter((car) => car.size === "large");
       setDatas(data);
     }
   };

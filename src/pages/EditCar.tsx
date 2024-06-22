@@ -1,32 +1,29 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FormCar from "../components/elements/FormCar/FormCar";
-import api from "../api";
-import { Car } from "../types/types";
+import { IForm } from "../types/types";
 import toast from "../utils/toast";
+import { useDispatchAuth } from "../context/AuthContext";
 
 const EditCar = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
-  const [data, setData] = useState<Car>({
-    id: "",
-    manufacture: "",
-    type: "",
+  const { id } = useParams();
+  const { apiJWT } = useDispatchAuth();
+  const [data, setData] = useState<IForm>({
+    name: "",
     rentPerDay: 0,
-    size: "",
-    capacity: 0,
-    available: false,
-    transmission: "",
-    year: 0,
-    image: "",
-    updatedAt: "",
+    size_id: "",
+    picture: null,
   });
 
   const fetchCar = async () => {
     try {
-      const { data } = await api.get(`/cars/${id}`);
-
-      setData(data);
+      const { data } = await apiJWT.get(`/cars/${id}`);
+      const car = data.data;
+      setData({
+        ...car,
+        size_id: car.car_size.id,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -35,27 +32,23 @@ const EditCar = () => {
   useEffect(() => {
     fetchCar();
   }, []);
-
+  console.log({ data });
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    const target = e.target as HTMLInputElement & {
+      files: FileList;
+    };
     setData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [target.name]: target.name === "picture" ? target.files[0] : target.value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      !data.manufacture ||
-      !data.type ||
-      !data.rentPerDay ||
-      !data.size ||
-      !data.capacity ||
-      !data.image
-    ) {
+    if (!data.name || !data.rentPerDay || !data.size_id) {
       return toast("Data Tidak Boleh Kosong", {
         type: "warning",
         autoClose: 2000,
@@ -63,16 +56,10 @@ const EditCar = () => {
     }
 
     try {
-      await api.put(`/cars/${id}`, {
-        ...data,
-        manufacture: data.manufacture,
-        type: data.type,
-        rentPerDay: data.rentPerDay,
-        size: data.size,
-        capacity: data.capacity,
-        available: true,
-        image: data.image,
-        updatedAt: new Date(),
+      await apiJWT.put(`/cars/${id}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
       navigate("/admin/cars");

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { Car } from "../../../types/types";
+import { IForm } from "../../../types/types";
 
 interface FormProps {
-  data: Car;
+  data: IForm;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
@@ -20,22 +20,9 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
               type="text"
               className="form-control lh-lg px-2"
               placeholder="Masukkan nama"
-              name="manufacture"
+              name="name"
               onChange={handleChange}
-              value={data.manufacture}
-            />
-          </div>
-        </div>
-        <div className="row mb-3 align-items-center">
-          <label className="col-sm-2 col-form-label">Tipe</label>
-          <div className="col-sm-10 w-50">
-            <input
-              type="text"
-              className="form-control lh-lg px-2"
-              placeholder="Masukkan tipe"
-              name="type"
-              onChange={handleChange}
-              value={data.type}
+              value={data.name}
             />
           </div>
         </div>
@@ -43,7 +30,7 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
           <label className="col-sm-2 col-form-label">Harga</label>
           <div className="col-sm-10 w-50">
             <input
-              type="number"
+              type="text"
               className="form-control lh-lg px-2"
               placeholder="Masukkan harga"
               name="rentPerDay"
@@ -58,41 +45,29 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
             <select
               className="form-select lh-lg px-2"
               aria-label="Default select example"
-              name="size"
+              name="size_id"
               onChange={handleChange}
-              value={data.size}
+              value={data.size_id}
             >
               <option selected>Pilih</option>
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
+              <option value="1">Small</option>
+              <option value="2">Medium</option>
+              <option value="3">Large</option>
             </select>
           </div>
         </div>
-        <div className="row mb-3 align-items-center">
-          <label className="col-sm-2 col-form-label">Kapasitas</label>
-          <div className="col-sm-10 w-50">
-            <input
-              type="number"
-              className="form-control lh-lg px-2"
-              placeholder="Masukkan harga"
-              name="capacity"
-              onChange={handleChange}
-              value={data.capacity}
-            />
-          </div>
-        </div>
-        <div className="row mb-3 align-items-center">
+        <div className="row mb-3 align-items-start">
           <label className="col-sm-2 col-form-label">Image</label>
           <div className="col-sm-10 w-50">
             <input
-              type="text"
-              className="form-control lh-lg px-2"
+              type="file"
+              className="form-control lh-lg px-2 mb-1"
               placeholder="Masukkan harga"
-              name="image"
+              name="picture"
+              accept="image/png, image/jpg, image/jpeg"
               onChange={handleChange}
-              value={data.image}
             />
+            <img src={data?.img_url} width={150} />
           </div>
         </div>
 

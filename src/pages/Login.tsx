@@ -2,11 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "../utils/toast";
 import { ToastContainer } from "react-toastify";
+import api from "../api/api";
+import { useDispatchAuth } from "../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [isError, setIsError] = useState<boolean>(false);
+  const { setToken } = useDispatchAuth();
   const [data, setData] = useState({ email: "", password: "" });
+  const [msg, setMsg] = useState<string>("");
 
   const handleChange = (e: any) => {
     setData((prev) => ({
@@ -18,17 +21,22 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (data.email === "admin@gmail.com" && data.password === "123") {
-      toast("Login berhasil", { type: "success", autoClose: 2000 });
+    try {
+      const res = await api.post("/users/login", {
+        email: data.email,
+        password: data.password,
+      });
 
+      localStorage.setItem("token", res.data.accessToken);
+      toast("Login berhasil", { type: "success", autoClose: 1000 });
       setTimeout(() => {
-        localStorage.setItem("auth", "true");
         navigate("/admin/dashboard");
-      }, 2500);
-      return;
+      }, 1500);
+    } catch (error: any) {
+      if (error.response) {
+        setMsg(error.response.data.message);
+      }
     }
-
-    setIsError(true);
   };
 
   return (
@@ -57,11 +65,9 @@ const Login = () => {
             <h3 className="text-start fw-bold" style={{ marginBottom: "32px" }}>
               Welcome, Admin BCR
             </h3>
-            {isError && (
+            {msg && (
               <div className="mb-4" style={{ backgroundColor: "#D00C1A1A" }}>
-                <p className="p-3 text-danger">
-                  Masukkan username dan password dengan benar
-                </p>
+                <p className="p-3 text-danger">{msg}</p>
               </div>
             )}
 

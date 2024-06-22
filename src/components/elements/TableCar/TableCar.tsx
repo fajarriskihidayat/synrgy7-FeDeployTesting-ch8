@@ -9,23 +9,27 @@ const TableCar = ({ cars }: CarsProps) => {
         <thead className="table-dark">
           <tr>
             <th>No</th>
-            <th>Manufacture</th>
-            <th>Type</th>
+            <th>Name</th>
             <th>Rent Per Day</th>
             <th>Size</th>
-            <th>Capacity</th>
+            <th>Image</th>
+            <th>Created By</th>
             <th>Updated By</th>
+            <th>Updated At</th>
           </tr>
         </thead>
         <tbody>
           {cars.map((car, i) => (
             <tr key={i}>
               <td>{i + 1}</td>
-              <td>{car.manufacture}</td>
-              <td>{car.type}</td>
+              <td>{car.name}</td>
               <td>{formatRupiah(car.rentPerDay)}</td>
               <td>{car.size}</td>
-              <td>{car.capacity}</td>
+              <td>
+                <img src={car.img_url} width={200} />
+              </td>
+              <td>{car.createBy?.email}</td>
+              <td>{car.updateBy?.email}</td>
               <td>{formatDate(car.updatedAt)}</td>
             </tr>
           ))}

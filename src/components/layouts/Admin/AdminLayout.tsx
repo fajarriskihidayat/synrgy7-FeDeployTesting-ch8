@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import MENU from "./constant";
+import api from "../../../api/api";
 
 type IAdminProps = {
   children: ReactNode;
@@ -11,9 +12,15 @@ const AdminLayout = ({ children }: IAdminProps) => {
   const navigate = useNavigate();
   const [show, setShow] = useState<boolean>(true);
 
-  const logout = () => {
-    localStorage.removeItem("auth");
-    navigate("/");
+  const logout = async () => {
+    try {
+      await api.delete("/users/logout");
+
+      localStorage.removeItem("token");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

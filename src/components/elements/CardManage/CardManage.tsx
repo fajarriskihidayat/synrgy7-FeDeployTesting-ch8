@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CarProps } from "../../../types/types";
-import api from "../../../api";
 import formatDate from "../../../utils/formatDate";
 import formatRupiah from "../../../utils/formatRupiah";
 import toast from "../../../utils/toast";
+import { useDispatchAuth } from "../../../context/AuthContext";
 
 const CardManage = ({ car }: CarProps) => {
   const navigate = useNavigate();
+  const { apiJWT } = useDispatchAuth();
   const [isShow, setIsShow] = useState(false);
-  const [id, setId] = useState<string | undefined>(undefined);
+  const [id, setId] = useState<number | undefined>(undefined);
 
   const handleDelete = async () => {
     try {
-      await api.delete(`/cars/${id}`);
+      await apiJWT.delete(`/cars/${id}`);
 
       setIsShow(false);
       navigate("/admin/cars");
@@ -31,15 +32,13 @@ const CardManage = ({ car }: CarProps) => {
     <>
       <div className="card" style={{ width: "21.5rem" }}>
         <img
-          src={`${car.image}`}
+          src={`${car.img_url}`}
           className="card-img-top"
           alt="car"
           style={{ objectFit: "fill", width: "100%", height: "200px" }}
         />
         <div className="card-body p-3 d-flex gap-2 flex-column">
-          <h6>
-            {car.manufacture} / {car.type}
-          </h6>
+          <h6>{car.name}</h6>
           <h5 className="fw-bold fs-6">
             {formatRupiah(car.rentPerDay)} / hari
           </h5>
