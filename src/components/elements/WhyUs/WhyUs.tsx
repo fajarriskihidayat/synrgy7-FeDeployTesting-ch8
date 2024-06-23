@@ -25,7 +25,7 @@ const WhyUs = () => {
             data-aos-delay="300"
             data-aos-duration="500"
           >
-            <img src="/assets/icon_complete.png" alt="" />
+            <img src="/images/icon_complete.png" alt="" />
             <h2>Mobil Lengkap</h2>
             <p>
               Tersedia banyak pilihan mobil, kondisi masih baru, bersih dan
@@ -40,7 +40,7 @@ const WhyUs = () => {
             data-aos-delay="350"
             data-aos-duration="500"
           >
-            <img src="/assets/icon_price.png" alt="" />
+            <img src="/images/icon_price.png" alt="" />
             <h2>Harga Murah</h2>
             <p>
               Harga murah dan bersaing, bisa bandingkan harga kami dengan rental
@@ -55,7 +55,7 @@ const WhyUs = () => {
             data-aos-delay="400"
             data-aos-duration="500"
           >
-            <img src="/assets/icon_24hrs.png" alt="" />
+            <img src="/images/icon_24hrs.png" alt="" />
             <h2>Layanan 24 Jam</h2>
             <p>
               Siap melayani kebutuhan Anda selama 24 jam nonstop. Kami juga
@@ -70,7 +70,7 @@ const WhyUs = () => {
             data-aos-delay="450"
             data-aos-duration="500"
           >
-            <img src="/assets/icon_professional.png" alt="" />
+            <img src="/images/icon_professional.png" alt="" />
             <h2>Sopir Profesional</h2>
             <p>
               Sopir yang profesional, berpengalaman, jujur, ramah dan selalu

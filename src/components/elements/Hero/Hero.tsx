@@ -42,7 +42,7 @@ const Hero = () => {
             data-aos-duration="1000"
             data-aos-offset="0"
           >
-            <img src="/assets/img_car.png" alt="Car" />
+            <img src="/images/img_car.png" alt="Car" />
           </div>
         </div>
       </section>

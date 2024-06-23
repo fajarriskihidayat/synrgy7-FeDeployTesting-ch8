@@ -15,11 +15,11 @@ const Footer = () => {
       <div>
         <p>Connect with us</p>
         <div className="d-flex gap-3">
-          <img src="/assets/icon_facebook.png" alt="fb" />
-          <img src="/assets/icon_instagram.png" alt="ig" />
-          <img src="/assets/icon_twitter.png" alt="twitter" />
-          <img src="/assets/icon_mail.png" alt="email" />
-          <img src="/assets/icon_twitch.png" alt="twitch" />
+          <img src="/images/icon_facebook.png" alt="fb" />
+          <img src="/images/icon_instagram.png" alt="ig" />
+          <img src="/images/icon_twitter.png" alt="twitter" />
+          <img src="/images/icon_mail.png" alt="email" />
+          <img src="/images/icon_twitch.png" alt="twitch" />
         </div>
       </div>
       <div>

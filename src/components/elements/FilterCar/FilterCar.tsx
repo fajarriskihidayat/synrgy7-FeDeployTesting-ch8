@@ -1,8 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import api from "../../../api/api";
-import { Car } from "../../../types/types";
 import CardList from "../CardList/CardList";
-import { IForm } from "./types";
+import { Car, IForm } from "./types";
 
 const FilterCar: React.FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -18,9 +16,10 @@ const FilterCar: React.FC = () => {
     }));
   };
 
-  const getCars = async () => {
+  const getCars = async (): Promise<any> => {
     try {
-      const { data } = await api.get("/cars");
+      const res = await fetch(import.meta.env.VITE_BACKEND_BINAR);
+      const data = await res.json();
       setCars(data);
     } catch (error) {
       console.log(error);
@@ -123,7 +122,7 @@ const FilterCar: React.FC = () => {
                     <div className="d-flex">
                       <input
                         placeholder="Jumlah Penumpang"
-                        type="input"
+                        type="number"
                         name="jumlah"
                         id="jumlah"
                         className="form-control body-12-light position-relative"

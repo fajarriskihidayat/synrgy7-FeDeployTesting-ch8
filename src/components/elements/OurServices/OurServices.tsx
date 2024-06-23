@@ -7,7 +7,7 @@ const OurServices = () => {
           data-aos="flip-left"
           data-aos-duration="500"
         >
-          <img src="/assets/img_service.png" alt="Our Services" />
+          <img src="/images/img_service.png" alt="Our Services" />
         </div>
         <div className="right col-lg-6 col-sm-12 p-0">
           <h1 className="pt-4" data-aos="fade-left" data-aos-delay="100">
@@ -21,23 +21,23 @@ const OurServices = () => {
           </p>
           <div>
             <div className="list" data-aos="fade-left" data-aos-delay="300">
-              <img src="/assets/Group_53.png" alt="Check" />
+              <img src="/images/Group_53.png" alt="Check" />
               <span>Sewa Mobil Dengan Supir di Bali 12 Jam</span>
             </div>
             <div className="list" data-aos="fade-left" data-aos-delay="400">
-              <img src="/assets/Group_53.png" alt="Check" />
+              <img src="/images/Group_53.png" alt="Check" />
               <span>Sewa Mobil Lepas Kunci di Bali 24 Jam</span>
             </div>
             <div className="list" data-aos="fade-left" data-aos-delay="500">
-              <img src="/assets/Group_53.png" alt="Check" />
+              <img src="/images/Group_53.png" alt="Check" />
               <span>Sewa Mobil Jangka Panjang Bulanan</span>
             </div>
             <div className="list" data-aos="fade-left" data-aos-delay="600">
-              <img src="/assets/Group_53.png" alt="Check" />
+              <img src="/images/Group_53.png" alt="Check" />
               <span>Gratis Antar - Jemput Mobil di Bandara</span>
             </div>
             <div className="list" data-aos="fade-left" data-aos-delay="700">
-              <img src="/assets/Group_53.png" alt="Check" />
+              <img src="/images/Group_53.png" alt="Check" />
               <span>Layanan Airport Transfer / Drop In Out</span>
             </div>
           </div>

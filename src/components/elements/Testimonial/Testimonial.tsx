@@ -15,13 +15,13 @@ const Testimonial = () => {
           data-aos-duration="500"
         >
           <img
-            src="/assets/img_photo.png"
+            src="/images/img_photo.png"
             alt="testi"
             style={{ width: "80px", height: "80px" }}
           />
           <div className="text-start ms-lg-5">
             <img
-              src="/assets/Rate.png"
+              src="/images/Rate.png"
               alt="rate"
               style={{ width: "80px", height: "16px" }}
             />
@@ -41,13 +41,13 @@ const Testimonial = () => {
           data-aos-duration="500"
         >
           <img
-            src="/assets/img_photo2.png"
+            src="/images/img_photo2.png"
             alt="testi"
             style={{ width: "80px", height: "80px", borderRadius: "100px" }}
           />
           <div className="text-start ms-lg-5">
             <img
-              src="/assets/Rate.png"
+              src="/images/Rate.png"
               alt="rate"
               style={{ width: "80px", height: "16px" }}
             />
@@ -67,13 +67,13 @@ const Testimonial = () => {
           data-aos-duration="500"
         >
           <img
-            src="/assets/img_photo.png"
+            src="/images/img_photo.png"
             alt="testi"
             style={{ width: "80px", height: "80px" }}
           />
           <div className="text-start ms-lg-5">
             <img
-              src="/assets/Rate.png"
+              src="/images/Rate.png"
               alt="rate"
               style={{ width: "80px", height: "16px" }}
             />

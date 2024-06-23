@@ -65,7 +65,6 @@ const EditCar = () => {
       });
 
       fetchCars();
-      navigate("/admin/cars");
       toast("Data Berhasil Diubah", {
         type: "success",
         autoClose: 1500,

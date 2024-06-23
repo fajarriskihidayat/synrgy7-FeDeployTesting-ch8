@@ -42,7 +42,7 @@ const Login = () => {
       <div className="row vh-100">
         <div className="col-md-8 d-flex align-items-center">
           <img
-            src="/assets/bg.png"
+            src="/images/bg.png"
             alt="Login Page Image"
             className="mx-auto img-fluid h-100 object-fit-cover"
           />

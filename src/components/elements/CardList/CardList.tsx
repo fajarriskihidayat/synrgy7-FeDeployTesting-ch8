@@ -1,5 +1,9 @@
-import { CarProps } from "../../../types/types";
+import { Car } from "../FilterCar/types";
 import formatRupiah from "../../../utils/formatRupiah";
+
+type CarProps = {
+  car: Car;
+};
 
 const CardList = ({ car }: CarProps) => {
   return (
