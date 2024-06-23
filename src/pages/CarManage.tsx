@@ -1,28 +1,10 @@
-import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import isLocation from "../utils/isLocation";
 
 import FilterType from "../components/elements/FilterType/FIlterType";
 import AdminLayout from "../components/layouts/Admin/AdminLayout";
-import { Car } from "../types/types";
-import api from "../api/api";
 
 const CarManage = () => {
-  const [cars, setCars] = useState<Car[]>([]);
-
-  const fetchCars = async () => {
-    try {
-      const { data } = await api.get("/cars");
-      setCars(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCars();
-  }, []);
-
   return (
     <AdminLayout>
       {isLocation("/admin/cars") ? (
@@ -39,7 +21,7 @@ const CarManage = () => {
             </Link>
           </div>
 
-          <FilterType cars={cars} />
+          <FilterType />
         </>
       ) : (
         <Outlet />

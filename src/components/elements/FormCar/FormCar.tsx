@@ -30,7 +30,7 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
           <label className="col-sm-2 col-form-label">Harga</label>
           <div className="col-sm-10 w-50">
             <input
-              type="text"
+              type="number"
               className="form-control lh-lg px-2"
               placeholder="Masukkan harga"
               name="rentPerDay"

@@ -5,9 +5,11 @@ import formatDate from "../../../utils/formatDate";
 import formatRupiah from "../../../utils/formatRupiah";
 import toast from "../../../utils/toast";
 import { useDispatchAuth } from "../../../context/AuthContext";
+import { useCar } from "../../../context/CarContext";
 
 const CardManage = ({ car }: CarProps) => {
   const navigate = useNavigate();
+  const { fetchCars } = useCar();
   const { apiJWT } = useDispatchAuth();
   const [isShow, setIsShow] = useState(false);
   const [id, setId] = useState<number | undefined>(undefined);
@@ -16,13 +18,16 @@ const CardManage = ({ car }: CarProps) => {
     try {
       await apiJWT.delete(`/cars/${id}`);
 
+      fetchCars();
       setIsShow(false);
-      navigate("/admin/cars");
       toast("Data Berhasil Dihapus", {
         type: "success",
         autoClose: 2000,
         position: "top-center",
       });
+      setTimeout(() => {
+        navigate("/admin/cars");
+      }, 1500);
     } catch (error) {
       console.log(error);
     }

@@ -3,7 +3,7 @@ export interface Car {
   name: string;
   rentPerDay: number;
   img_url: string;
-  size: Size | number;
+  size?: Size | number;
   isDeleted: number;
   createdBy: number | null;
   updatedBy: number | null;

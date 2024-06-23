@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import CardManage from "../CardManage/CardManage";
 import TYPE from "./constant";
 import styles from "./index.module.css";
-import { Car, CarsProps } from "../../../types/types";
+import { Car } from "../../../types/types";
+import { useCar } from "../../../context/CarContext";
 
-const FIlterType = ({ cars }: CarsProps) => {
+const FIlterType = () => {
+  const { cars } = useCar();
   const [isActive, seIsActive] = useState<string>("All");
   const [datas, setDatas] = useState<Car[]>([]);
 

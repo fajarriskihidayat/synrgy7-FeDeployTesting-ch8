@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { IForm } from "../types/types";
 import toast from "../utils/toast";
 import { useDispatchAuth } from "../context/AuthContext";
+import { useCar } from "../context/CarContext";
 
 const AddCar = () => {
   const navigate = useNavigate();
+  const { fetchCars } = useCar();
   const { apiJWT } = useDispatchAuth();
   const [data, setData] = useState<IForm>({
     name: "",
@@ -44,12 +46,15 @@ const AddCar = () => {
         },
       });
 
-      navigate("/admin/cars");
+      fetchCars();
       toast("Data Berhasil Disimpan", {
         type: "success",
         autoClose: 2000,
         position: "top-center",
       });
+      setTimeout(() => {
+        navigate("/admin/cars");
+      }, 1500);
     } catch (error) {
       console.log(error);
     }

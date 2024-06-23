@@ -4,10 +4,12 @@ import FormCar from "../components/elements/FormCar/FormCar";
 import { IForm } from "../types/types";
 import toast from "../utils/toast";
 import { useDispatchAuth } from "../context/AuthContext";
+import { useCar } from "../context/CarContext";
 
 const EditCar = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { fetchCars } = useCar();
   const { apiJWT } = useDispatchAuth();
   const [data, setData] = useState<IForm>({
     name: "",
@@ -32,7 +34,7 @@ const EditCar = () => {
   useEffect(() => {
     fetchCar();
   }, []);
-  console.log({ data });
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -62,12 +64,16 @@ const EditCar = () => {
         },
       });
 
+      fetchCars();
       navigate("/admin/cars");
       toast("Data Berhasil Diubah", {
         type: "success",
-        autoClose: 2000,
+        autoClose: 1500,
         position: "top-center",
       });
+      setTimeout(() => {
+        navigate("/admin/cars");
+      }, 1500);
     } catch (error) {
       console.log(error);
     }

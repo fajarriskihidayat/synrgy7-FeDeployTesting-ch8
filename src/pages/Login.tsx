@@ -3,11 +3,9 @@ import { useState } from "react";
 import toast from "../utils/toast";
 import { ToastContainer } from "react-toastify";
 import api from "../api/api";
-import { useDispatchAuth } from "../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setToken } = useDispatchAuth();
   const [data, setData] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState<string>("");
 

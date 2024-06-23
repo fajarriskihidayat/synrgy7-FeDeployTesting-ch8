@@ -1,9 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { IForm } from "./types";
-import CardList from "../CardList/CardList";
 import api from "../../../api/api";
 import { Car } from "../../../types/types";
-import toast from "../../../utils/toast";
+import CardList from "../CardList/CardList";
+import { IForm } from "./types";
 
 const FilterCar: React.FC = () => {
   const [cars, setCars] = useState<Car[]>([]);

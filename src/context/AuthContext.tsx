@@ -10,7 +10,6 @@ import {
 import { IJWTDecoded } from "../types/types";
 import { jwtDecode } from "jwt-decode";
 import api from "../api/api";
-import { Outlet, useNavigate } from "react-router-dom";
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 
 type AuthContextType = {
@@ -35,7 +34,6 @@ const AuthContext = createContext<AuthContextType>({
 const AuthDispatchContext = createContext<AuthDispatchContextType | null>(null);
 
 const AuthProvider = ({ children }: AuthProps) => {
-  const navigate = useNavigate();
   const [token, setToken] = useState<string>("");
   const [decoded, setDecoded] = useState<IJWTDecoded>({
     id: 0,
@@ -103,6 +101,7 @@ export const useAuth = () => {
 
 export const useDispatchAuth = () => {
   const context = useContext(AuthDispatchContext);
-  if (!context) throw new Error("useAuth must be used within an AuthProvider");
+  if (!context)
+    throw new Error("useDispatchAuth must be used within an AuthProvider");
   return context;
 };
