@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "../utils/toast";
-import { ToastContainer } from "react-toastify";
 import api from "../api/api";
 
 const Login = () => {
@@ -9,7 +8,7 @@ const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState<string>("");
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -101,8 +100,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-
-      <ToastContainer />
     </div>
   );
 };
