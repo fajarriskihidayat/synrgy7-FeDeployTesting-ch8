@@ -1,16 +1,15 @@
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import { jwtDecode } from "jwt-decode";
 import {
   Dispatch,
   ReactNode,
   SetStateAction,
   createContext,
   useContext,
-  useEffect,
   useState,
 } from "react";
-import { IJWTDecoded } from "../types/types";
-import { jwtDecode } from "jwt-decode";
 import api from "../api/api";
-import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import { IJWTDecoded } from "../types/types";
 
 type AuthContextType = {
   token: string;
@@ -41,23 +40,6 @@ const AuthProvider = ({ children }: AuthProps) => {
     exp: 0,
     iat: 0,
   });
-
-  const refreshToken = async () => {
-    try {
-      const { data } = await api.get("/users/token");
-      setToken(data.accessToken);
-      const decoded: IJWTDecoded = jwtDecode(data.accessToken);
-      setDecoded(decoded);
-    } catch (error: any) {
-      if (error.response) {
-        localStorage.removeItem("token");
-      }
-    }
-  };
-
-  useEffect(() => {
-    refreshToken();
-  }, []);
 
   const apiJWT = axios.create({
     baseURL: "http://localhost:8000/api",

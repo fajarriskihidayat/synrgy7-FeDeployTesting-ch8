@@ -1,7 +1,13 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const token = localStorage.getItem("token");
+  const [isLogin, setIsLogin] = useState<string | null>("");
+
+  useEffect(() => {
+    const storage = localStorage.getItem("expiryAuth");
+    setIsLogin(storage);
+  });
 
   return (
     <nav
@@ -62,7 +68,7 @@ const Navbar = () => {
                   FAQ
                 </a>
               </li>
-              {token ? (
+              {isLogin ? (
                 <div className="d-flex ">
                   <div className="btn-group">
                     <p

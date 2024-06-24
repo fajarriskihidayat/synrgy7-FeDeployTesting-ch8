@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "../utils/toast";
 import api from "../api/api";
+import { setWithExpiry } from "../utils/isExpiryToken";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,7 +25,8 @@ const Login = () => {
         password: data.password,
       });
 
-      localStorage.setItem("token", res.data.accessToken);
+      // localStorage.setItem("token", res.data.accessToken, );
+      setWithExpiry("expiryAuth", res.data.accessToken, 10 * 1000);
       toast("Login berhasil", { type: "success", autoClose: 1000 });
       setTimeout(() => {
         navigate("/admin/dashboard");
