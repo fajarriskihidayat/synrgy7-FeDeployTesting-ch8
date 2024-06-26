@@ -9,7 +9,15 @@ const Dashboard = () => {
     <AdminLayout>
       <h5 className="fw-bold mb-4">Dashboard</h5>
 
-      <TableCar cars={cars} />
+      {cars.length === 0 ? (
+        <div style={{ backgroundColor: "#FCFFCC" }}>
+          <p className="p-3 m-0 text-warning text-center fw-semibold">
+            Data mobil masih kosong
+          </p>
+        </div>
+      ) : (
+        <TableCar cars={cars} />
+      )}
     </AdminLayout>
   );
 };

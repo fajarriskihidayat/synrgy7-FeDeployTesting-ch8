@@ -6,6 +6,7 @@ const FilterCar: React.FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
   const [carFilter, setCarFilter] = useState<Car[]>([]);
   const [data, setData] = useState<IForm>({});
+  const [msg, setMsg] = useState<boolean>(false);
 
   const handleOnChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -29,11 +30,14 @@ const FilterCar: React.FC = () => {
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setMsg(false);
     const available = data.driver === "true" ? true : false;
     const capacity = data.jumlah ? data.jumlah : 0;
     const filteredCar = cars.filter(
       (car) => car.available === available && car.capacity >= +capacity
     );
+
+    if (filteredCar.length === 0) setMsg(true);
     setCarFilter(filteredCar);
   };
 
@@ -153,14 +157,24 @@ const FilterCar: React.FC = () => {
       </div>
 
       <div id="filtered-car" className="row">
-        {carFilter.length !== 0 ? (
-          carFilter.map((car, i) => <CardList car={car} key={i} />)
+        {!data.driver || !data.tanggal || !data.waktu ? (
+          <div style={{ backgroundColor: "#FCFFCC" }}>
+            <p className="p-3 m-0 text-warning text-center fw-semibold">
+              Silahkan masukan opsi
+            </p>
+          </div>
         ) : (
+          <div></div>
+        )}
+
+        {msg ? (
           <div style={{ backgroundColor: "#D00C1A1A" }}>
             <p className="p-3 m-0 text-danger text-center fw-semibold">
               Data tidak ditemukan
             </p>
           </div>
+        ) : (
+          carFilter.map((car, i) => <CardList car={car} key={i} />)
         )}
       </div>
     </section>

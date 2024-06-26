@@ -87,7 +87,7 @@ const CardManage = ({ car }: CarProps) => {
           <div className="modal-dialog m-auto" style={{ top: 140 }}>
             <div className="modal-content">
               <div className="mt-5 text-center">
-                <img src="/assets/icon-delete.png" alt="icon delete" />
+                <img src="/images/icon-delete.png" alt="icon delete" />
               </div>
               <div className="text-center">
                 <h6 className="fw-bold my-3">Menghapus Data Mobil</h6>

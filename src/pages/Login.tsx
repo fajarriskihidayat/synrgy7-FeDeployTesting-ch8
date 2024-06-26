@@ -20,13 +20,14 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await api.post("/users/login", {
+      await api.post("/users/login", {
         email: data.email,
         password: data.password,
       });
 
-      // localStorage.setItem("token", res.data.accessToken, );
-      setWithExpiry("expiryAuth", res.data.accessToken, 10 * 1000);
+      // localStorage.setItem("token", res.data.accessToken);
+      // console.log(res.data.accessToken);
+      setWithExpiry("expiryAuth", 3600000);
       toast("Login berhasil", { type: "success", autoClose: 1000 });
       setTimeout(() => {
         navigate("/admin/dashboard");

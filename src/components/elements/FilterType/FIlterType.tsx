@@ -49,7 +49,15 @@ const FIlterType = () => {
       </ul>
 
       <div className="d-flex flex-wrap gap-3">
-        {datas.map((item, i) => <CardManage car={item} key={i} />).reverse()}
+        {datas.length === 0 ? (
+          <div style={{ backgroundColor: "#FCFFCC", width: "100%" }}>
+            <p className="p-3 m-0 text-warning text-center fw-semibold">
+              Data mobil masih kosong
+            </p>
+          </div>
+        ) : (
+          datas.map((item, i) => <CardManage car={item} key={i} />).reverse()
+        )}
       </div>
     </>
   );
