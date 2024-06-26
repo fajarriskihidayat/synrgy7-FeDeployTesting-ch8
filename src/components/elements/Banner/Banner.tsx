@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <section id="banner" className="container">
@@ -8,15 +10,15 @@ const Banner = () => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
-      <a
+      <Link
         className="btn text-light"
         data-aos="zoom-in"
         data-aos-delay="200"
         data-aos-duration="500"
-        href="/cars"
+        to="/cars"
       >
         Mulai Sewa Mobil
-      </a>
+      </Link>
     </section>
   );
 };

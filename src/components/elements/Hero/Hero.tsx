@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Hero = () => {
   return (
     <div className="container">
@@ -25,15 +27,15 @@ const Hero = () => {
               kualitas terbaik dengan harga terjangkau. Selalu siap melayani
               kebutuhanmu untuk sewa mobil selama 24 jam.
             </p>
-            <a
+            <Link
               className="btn text-light mb-4"
               data-aos="fade-right"
               data-aos-duration="700"
               data-aos-delay="150"
-              href="/cars"
+              to="/cars"
             >
               Mulai Sewa Mobil
-            </a>
+            </Link>
           </div>
           <div
             className="right col-lg-6 col-sm-12"
