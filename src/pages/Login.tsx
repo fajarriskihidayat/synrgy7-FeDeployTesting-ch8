@@ -3,9 +3,13 @@ import { useState } from "react";
 import toast from "../utils/toast";
 import api from "../api/api";
 import { setWithExpiry } from "../utils/isExpiryToken";
+import { useDispatchAuth } from "../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
+import { IJWTDecoded } from "../types/types";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setDecoded } = useDispatchAuth();
   const [data, setData] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState<string>("");
 
@@ -20,13 +24,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      await api.post("/users/login", {
+      const res = await api.post("/users/login", {
         email: data.email,
         password: data.password,
       });
 
-      // localStorage.setItem("token", res.data.accessToken);
-      // console.log(res.data.accessToken);
+      const decoded: IJWTDecoded = jwtDecode(res.data.accessToken);
+      setDecoded((prev) => ({ ...prev, email: decoded.email }));
       setWithExpiry("expiryAuth", 3600000);
       toast("Login berhasil", { type: "success", autoClose: 1000 });
       setTimeout(() => {
