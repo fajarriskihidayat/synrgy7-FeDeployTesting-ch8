@@ -29,7 +29,7 @@ const TableCar = ({ cars }: CarsProps) => {
               <td>{formatRupiah(car.rentPerDay)}</td>
               <td>{car.size}</td>
               <td>{car.createBy?.email}</td>
-              <td>{car.updateBy?.email}</td>
+              <td>{car.updateBy ? car.updateBy.email : "No Updated"}</td>
               <td>{formatDate(car.updatedAt)}</td>
             </tr>
           ))}
