@@ -41,11 +41,12 @@ const AuthProvider = ({ children }: AuthProps) => {
     iat: 0,
   });
 
-  axios.defaults.withCredentials = true;
   const apiJWT = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_API,
+    withCredentials: true,
     headers: {
       Authorization: `Bearer ${token}`,
+      "Access-Control-Allow-Credentials": true,
     },
   });
   apiJWT.interceptors.request.use(
