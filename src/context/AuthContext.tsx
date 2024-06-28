@@ -41,6 +41,7 @@ const AuthProvider = ({ children }: AuthProps) => {
     iat: 0,
   });
 
+  axios.defaults.withCredentials = true;
   const apiJWT = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_API,
     headers: {
