@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import MENU from "./constant";
 import api from "../../../api/api";
+import { useAuth } from "../../../context/AuthContext";
 
 type IAdminProps = {
   children: ReactNode;
@@ -10,6 +11,7 @@ type IAdminProps = {
 
 const AdminLayout = ({ children }: IAdminProps) => {
   const navigate = useNavigate();
+  const { decoded } = useAuth();
   const [show, setShow] = useState<boolean>(true);
 
   const logout = async () => {
@@ -44,7 +46,7 @@ const AdminLayout = ({ children }: IAdminProps) => {
                 style={{ backgroundColor: "transparent", border: 0 }}
               >
                 <i className="fa-solid fa-circle text-secondary fs-2"></i>{" "}
-                admin@gmail.com
+                {decoded.email}
               </p>
               <ul className="dropdown-menu">
                 <li className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item">

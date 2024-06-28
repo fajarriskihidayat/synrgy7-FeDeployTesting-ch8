@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 const Navbar = () => {
+  const { decoded } = useAuth();
   const [isLogin, setIsLogin] = useState<string | null>("");
 
   useEffect(() => {
@@ -78,7 +80,7 @@ const Navbar = () => {
                       style={{ backgroundColor: "transparent", border: 0 }}
                     >
                       <i className="fa-solid fa-circle text-secondary fs-2"></i>{" "}
-                      admin@gmail.com
+                      {decoded.email}
                     </p>
                     <ul className="dropdown-menu">
                       <li className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item">
