@@ -18,7 +18,7 @@ const AdminLayout = ({ children }: IAdminProps) => {
     try {
       await api.delete("/users/logout");
 
-      localStorage.removeItem("expiryAuth");
+      localStorage.removeItem("auth");
       navigate("/");
     } catch (error) {
       console.log(error);

@@ -5,7 +5,7 @@ import { getWithExpiry } from "./utils/isExpiryToken";
 
 function App() {
   useEffect(() => {
-    getWithExpiry("expiryAuth");
+    getWithExpiry("auth");
   });
 
   return (

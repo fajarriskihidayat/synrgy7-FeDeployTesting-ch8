@@ -31,7 +31,7 @@ const Login = () => {
 
       const decoded: IJWTDecoded = jwtDecode(res.data.accessToken);
       setDecoded((prev) => ({ ...prev, email: decoded.email }));
-      setWithExpiry("expiryAuth", 3600000);
+      setWithExpiry("auth", res.data.accessToken, 3600000);
       toast("Login berhasil", { type: "success", autoClose: 1000 });
       setTimeout(() => {
         navigate("/admin/dashboard");

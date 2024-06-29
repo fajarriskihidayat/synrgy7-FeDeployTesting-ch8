@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoutes = () => {
-  const token = localStorage.getItem("expiryAuth");
+  const token = localStorage.getItem("auth");
 
   return token ? <Outlet /> : <Navigate to="/" />;
 };

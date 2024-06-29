@@ -1,7 +1,10 @@
-export const setWithExpiry = (key: string, ttl: number) => {
+export const setWithExpiry = (key: string, value: string, ttl: number) => {
   const now = new Date();
 
-  const item = now.getTime() + ttl;
+  const item = {
+    token: value,
+    expiry: now.getTime() + ttl,
+  };
   localStorage.setItem(key, JSON.stringify(item));
 };
 

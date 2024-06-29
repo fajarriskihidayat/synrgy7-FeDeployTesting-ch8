@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isLogin, setIsLogin] = useState<string | null>("");
 
   useEffect(() => {
-    const storage = localStorage.getItem("expiryAuth");
+    const storage = localStorage.getItem("auth");
     setIsLogin(storage);
   });
 

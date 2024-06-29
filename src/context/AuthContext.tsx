@@ -6,6 +6,7 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import api from "../api/api";
@@ -40,6 +41,15 @@ const AuthProvider = ({ children }: AuthProps) => {
     exp: 0,
     iat: 0,
   });
+
+  useEffect(() => {
+    const auth = localStorage.getItem("auth");
+    const item = auth && JSON.parse(auth);
+    if (item) {
+      const decoded: IJWTDecoded = jwtDecode(item?.token);
+      setDecoded((prev) => ({ ...prev, email: decoded.email }));
+    }
+  }, []);
 
   const apiJWT = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_API,
