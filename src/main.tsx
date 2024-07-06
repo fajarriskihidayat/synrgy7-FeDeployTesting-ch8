@@ -6,15 +6,18 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import AuthProvider from "./context/AuthContext";
 import CarProvider from "./context/CarContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <CarProvider>
-          <App />
-        </CarProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <BrowserRouter>
+        <AuthProvider>
+          <CarProvider>
+            <App />
+          </CarProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
