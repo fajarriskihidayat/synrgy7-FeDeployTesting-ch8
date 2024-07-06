@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import toast from "../utils/toast";
-import api from "../api/api";
-import { setWithExpiry } from "../utils/isExpiryToken";
-import { useDispatchAuth } from "../context/AuthContext";
+import { useGoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../api/api";
+import { useDispatchAuth } from "../context/AuthContext";
 import { IJWTDecoded } from "../types/types";
+import { setWithExpiry } from "../utils/isExpiryToken";
+import toast from "../utils/toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -43,8 +44,36 @@ const Login = () => {
     }
   };
 
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: async (codeRes) => {
+      try {
+        const res = await api.post("/users/googleAuth", null, {
+          headers: {
+            Authorization: `Bearer ${codeRes.access_token}`,
+          },
+        });
+
+        const decoded: IJWTDecoded = jwtDecode(res.data.accessToken);
+        setDecoded((prev) => ({ ...prev, email: decoded.email }));
+        setWithExpiry("auth", res.data.accessToken, 3600000);
+        toast("Login berhasil", { type: "success", autoClose: 1000 });
+        setTimeout(() => {
+          navigate("/admin/dashboard");
+        }, 1500);
+      } catch (error: any) {
+        if (error.response) {
+          setMsg(error.response.data.message);
+        }
+      }
+    },
+  });
+
+  const handleLoginOAuth = () => {
+    loginWithGoogle();
+  };
+
   return (
-    <div className="overflow-x-hidden overflow-hidden">
+    <div>
       <div className="row vh-100">
         <div className="col-md-8 d-flex align-items-center">
           <img
@@ -104,6 +133,27 @@ const Login = () => {
                 Sign In
               </button>
             </form>
+
+            <div
+              className="w-100 d-flex align-items-center justify-content-center mt-4 rounded-1"
+              style={{ border: "1px solid grey", cursor: "pointer" }}
+              onClick={handleLoginOAuth}
+            >
+              <img
+                src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
+                style={{ width: "10%" }}
+              />
+              Sign In with Google
+              {/* <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+                useOneTap
+              /> */}
+            </div>
           </div>
         </div>
       </div>
