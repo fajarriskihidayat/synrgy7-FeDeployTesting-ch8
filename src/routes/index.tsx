@@ -23,6 +23,9 @@ const Root = () => {
           <Route path="edit/:id" element={<EditCar />} />
         </Route>
       </Route>
+      <Route path="/member" element={<PrivateRoutes />}>
+        <Route path="dashboard" element={<Dashboard />} />
+      </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

@@ -10,7 +10,7 @@ import toast from "../utils/toast";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setDecoded } = useDispatchAuth();
+  const { setDecoded, setToken } = useDispatchAuth();
   const [data, setData] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState<string>("");
 
@@ -30,12 +30,15 @@ const Login = () => {
         password: data.password,
       });
 
+      setToken(res.data.accessToken);
       const decoded: IJWTDecoded = jwtDecode(res.data.accessToken);
-      setDecoded((prev) => ({ ...prev, email: decoded.email }));
+      setDecoded(decoded);
       setWithExpiry("auth", res.data.accessToken, 3600000);
       toast("Login berhasil", { type: "success", autoClose: 1000 });
       setTimeout(() => {
-        navigate("/admin/dashboard");
+        decoded.role === "member"
+          ? navigate("/member/dashboard")
+          : navigate("/admin/dashboard");
       }, 1500);
     } catch (error: any) {
       if (error.response) {
@@ -53,12 +56,13 @@ const Login = () => {
           },
         });
 
+        setToken(res.data.accessToken);
         const decoded: IJWTDecoded = jwtDecode(res.data.accessToken);
-        setDecoded((prev) => ({ ...prev, email: decoded.email }));
+        setDecoded(decoded);
         setWithExpiry("auth", res.data.accessToken, 3600000);
         toast("Login berhasil", { type: "success", autoClose: 1000 });
         setTimeout(() => {
-          navigate("/admin/dashboard");
+          navigate("/member/dashboard");
         }, 1500);
       } catch (error: any) {
         if (error.response) {

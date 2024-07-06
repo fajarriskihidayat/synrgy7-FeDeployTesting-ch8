@@ -46,6 +46,7 @@ export interface User {
 export interface IJWTDecoded {
   id: number;
   email: string;
+  role: string;
   exp: number;
   iat: number;
 }

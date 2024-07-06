@@ -1,4 +1,4 @@
-const MENU = [
+const MENU_ADMIN = [
   {
     id: 1,
     name: "Dashboard",
@@ -13,4 +13,13 @@ const MENU = [
   },
 ];
 
-export default MENU;
+const MENU_MEMBER = [
+  {
+    id: 1,
+    name: "Dashboard",
+    icon: "fas fa-sharp fa-house",
+    path: "/member/dashboard",
+  },
+];
+
+export { MENU_ADMIN, MENU_MEMBER };

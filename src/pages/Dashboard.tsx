@@ -1,5 +1,5 @@
 import TableCar from "../components/elements/TableCar/TableCar";
-import AdminLayout from "../components/layouts/Admin/AdminLayout";
+import AdminLayout from "../components/layouts/Layout";
 import { useCar } from "../context/CarContext";
 
 const Dashboard = () => {

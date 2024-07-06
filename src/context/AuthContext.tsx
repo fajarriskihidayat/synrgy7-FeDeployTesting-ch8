@@ -29,7 +29,7 @@ type AuthProps = {
 
 const AuthContext = createContext<AuthContextType>({
   token: "",
-  decoded: { id: 0, email: "", exp: 0, iat: 0 },
+  decoded: { id: 0, email: "", role: "", exp: 0, iat: 0 },
 });
 const AuthDispatchContext = createContext<AuthDispatchContextType | null>(null);
 
@@ -38,6 +38,7 @@ const AuthProvider = ({ children }: AuthProps) => {
   const [decoded, setDecoded] = useState<IJWTDecoded>({
     id: 0,
     email: "",
+    role: "",
     exp: 0,
     iat: 0,
   });
@@ -47,7 +48,7 @@ const AuthProvider = ({ children }: AuthProps) => {
     const item = auth && JSON.parse(auth);
     if (item) {
       const decoded: IJWTDecoded = jwtDecode(item?.token);
-      setDecoded((prev) => ({ ...prev, email: decoded.email }));
+      setDecoded(decoded);
     }
   }, []);
 

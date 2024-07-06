@@ -2,7 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import isLocation from "../utils/isLocation";
 
 import FilterType from "../components/elements/FilterType/FIlterType";
-import AdminLayout from "../components/layouts/Admin/AdminLayout";
+import AdminLayout from "../components/layouts/Layout";
 
 const CarManage = () => {
   return (

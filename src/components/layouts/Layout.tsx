@@ -1,9 +1,9 @@
 import { ReactNode, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
-import MENU from "./constant";
-import api from "../../../api/api";
-import { useAuth } from "../../../context/AuthContext";
+import { MENU_ADMIN, MENU_MEMBER } from "./constant";
+import api from "../../api/api";
+import { useAuth } from "../../context/AuthContext";
 
 type IAdminProps = {
   children: ReactNode;
@@ -49,14 +49,14 @@ const AdminLayout = ({ children }: IAdminProps) => {
                 {decoded.email}
               </p>
               <ul className="dropdown-menu">
-                <li className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item">
+                <li
+                  className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item"
+                  onClick={logout}
+                >
                   <i
                     className={`fas fa-sign-out ${styles.navLinkIcon} text-secondary`}
                   ></i>
-                  <button
-                    className="text-black bg-transparent border-0"
-                    onClick={logout}
-                  >
+                  <button className="text-black bg-transparent border-0">
                     Logout
                   </button>
                 </li>
@@ -88,26 +88,28 @@ const AdminLayout = ({ children }: IAdminProps) => {
 
               <div className={styles.navList}>
                 <div className={styles.icon}></div>
-                {MENU.map((item) => (
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                      isActive
-                        ? `${styles.navLink} ${styles.active}`
-                        : `${styles.navLink}`
-                    }
-                    key={item.id}
-                  >
-                    <i
-                      className={`fs-5 ${item.icon} ${styles.navLinkIcon}`}
-                    ></i>
-                    <span
-                      className={`text-dark fw-semibold ${styles.navLinkName}`}
+                {(decoded.role === "member" ? MENU_MEMBER : MENU_ADMIN).map(
+                  (item) => (
+                    <NavLink
+                      to={item.path}
+                      className={({ isActive }) =>
+                        isActive
+                          ? `${styles.navLink} ${styles.active}`
+                          : `${styles.navLink}`
+                      }
+                      key={item.id}
                     >
-                      {item.name}
-                    </span>
-                  </NavLink>
-                ))}
+                      <i
+                        className={`fs-5 ${item.icon} ${styles.navLinkIcon}`}
+                      ></i>
+                      <span
+                        className={`text-dark fw-semibold ${styles.navLinkName}`}
+                      >
+                        {item.name}
+                      </span>
+                    </NavLink>
+                  )
+                )}
               </div>
             </div>
           </nav>
