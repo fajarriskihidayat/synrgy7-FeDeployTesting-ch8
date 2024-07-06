@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import { MENU_ADMIN, MENU_MEMBER } from "../../layouts/constant";
 
 const Navbar = () => {
   const { decoded } = useAuth();
@@ -83,30 +84,24 @@ const Navbar = () => {
                       {decoded.email}
                     </p>
                     <ul className="dropdown-menu">
-                      <li className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item">
-                        <i
-                          className={"fas fa-sharp fa-house fs-5"}
-                          style={{ color: "#0d28a6" }}
-                        ></i>
+                      {(decoded.role === "member"
+                        ? MENU_MEMBER
+                        : MENU_ADMIN
+                      ).map((item) => (
                         <Link
-                          to="/admin/dashboard"
-                          className="text-black bg-transparent text-decoration-none fw-semibold"
+                          to={item.path}
+                          className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item"
+                          key={item.id}
                         >
-                          Dashboard
+                          <i
+                            className={`fs-5 ${item.icon}`}
+                            style={{ color: "#0d28a6" }}
+                          ></i>
+                          <span className="text-black bg-transparent text-decoration-none fw-semibold">
+                            {item.name}
+                          </span>
                         </Link>
-                      </li>
-                      <li className="d-flex align-items-center gap-2 py-2 px-4 dropdown-item">
-                        <i
-                          className={"fas fa-car-side fs-5"}
-                          style={{ color: "#0d28a6" }}
-                        ></i>
-                        <Link
-                          to="/admin/cars"
-                          className="text-black bg-transparent text-decoration-none fw-semibold"
-                        >
-                          Cars
-                        </Link>
-                      </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
