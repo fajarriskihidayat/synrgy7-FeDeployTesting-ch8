@@ -107,7 +107,7 @@ const Navbar = () => {
                 </div>
               ) : (
                 <Link to="/login" className="btn text-light">
-                  Register
+                  Sign In
                 </Link>
               )}
             </ul>

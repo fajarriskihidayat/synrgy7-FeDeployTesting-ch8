@@ -1,7 +1,7 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { useDispatchAuth } from "../context/AuthContext";
 import { IJWTDecoded } from "../types/types";
@@ -25,10 +25,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await api.post("/users/login", {
-        email: data.email,
-        password: data.password,
-      });
+      const res = await api.post("/users/login", data);
 
       setToken(res.data.accessToken);
       const decoded: IJWTDecoded = jwtDecode(res.data.accessToken);
@@ -138,8 +135,9 @@ const Login = () => {
               </button>
             </form>
 
+            <p className="my-2 text-center">Or Login with</p>
             <div
-              className="w-100 d-flex align-items-center justify-content-center mt-4 rounded-1"
+              className="w-100 d-flex align-items-center justify-content-center rounded-1"
               style={{ border: "1px solid grey", cursor: "pointer" }}
               onClick={handleLoginOAuth}
             >
@@ -158,6 +156,12 @@ const Login = () => {
                 useOneTap
               /> */}
             </div>
+            <p className="text-center mt-3">
+              Don't have an account?{" "}
+              <Link to="/register" style={{ color: "#0D28A6" }}>
+                Sign Up
+              </Link>
+            </p>
           </div>
         </div>
       </div>

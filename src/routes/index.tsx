@@ -9,6 +9,7 @@ import Dashboard from "../pages/Dashboard";
 import CarManage from "../pages/CarManage";
 import AddCar from "../pages/AddCar";
 import EditCar from "../pages/EditCar";
+import Register from "../pages/Register";
 
 const Root = () => {
   return (
@@ -16,6 +17,7 @@ const Root = () => {
       <Route path="/" element={<LandingPage />} />
       <Route path="/cars" element={<CarList />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/admin" element={<PrivateRoutes />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="cars" element={<CarManage />}>
