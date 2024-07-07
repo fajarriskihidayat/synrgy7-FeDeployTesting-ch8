@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import api from "../api/api";
+import { useNavigate } from "react-router-dom";
+import { useDispatchAuth } from "../context/AuthContext";
 import toast from "../utils/toast";
 
-const Register = () => {
+const CreateAdminPage = () => {
   const navigate = useNavigate();
+  const { apiJWT } = useDispatchAuth();
   const [data, setData] = useState({ name: "", email: "", password: "" });
   const [msg, setMsg] = useState<string>("");
 
@@ -15,19 +16,27 @@ const Register = () => {
     }));
   };
 
-  const hadleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateAdmin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      await api.post("/users/register", data);
+      if (!localStorage.getItem("auth")) {
+        return toast("Please Login", { type: "info", autoClose: 1000 });
+      }
 
-      toast("Register berhasil", { type: "success", autoClose: 1000 });
+      await apiJWT.post("/users/admin/register", data);
+
+      toast("Akun Admin berhasil", { type: "success", autoClose: 1000 });
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 1500);
     } catch (error: any) {
       if (error.response) {
-        setMsg(error.response.data.message);
+        if (error.response.data.message === "Permission denied") {
+          toast("Anda bukan Super Admin", { type: "warning", autoClose: 1000 });
+        } else {
+          setMsg(error.response.data.message);
+        }
       }
     }
   };
@@ -56,7 +65,7 @@ const Register = () => {
             </svg>
 
             <h3 className="text-start fw-bold" style={{ marginBottom: "32px" }}>
-              Create Your Account!
+              Create Admin Account!
             </h3>
             {msg && (
               <div className="mb-4" style={{ backgroundColor: "#D00C1A1A" }}>
@@ -64,7 +73,7 @@ const Register = () => {
               </div>
             )}
 
-            <form onSubmit={hadleRegister}>
+            <form onSubmit={handleCreateAdmin}>
               <div className="form-group">
                 <label htmlFor="name">Name</label>
                 <input
@@ -100,16 +109,9 @@ const Register = () => {
                 className="text-white btn btn-block w-100"
                 style={{ backgroundColor: "#0D28A6" }}
               >
-                Sign Up
+                Create
               </button>
             </form>
-
-            <p className="text-center mt-3">
-              Already have an account?{" "}
-              <Link to="/login" style={{ color: "#0D28A6" }}>
-                Sign In
-              </Link>
-            </p>
           </div>
         </div>
       </div>
@@ -117,4 +119,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default CreateAdminPage;

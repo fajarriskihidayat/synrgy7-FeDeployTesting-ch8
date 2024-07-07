@@ -10,6 +10,7 @@ import CarManage from "../pages/CarManage";
 import AddCar from "../pages/AddCar";
 import EditCar from "../pages/EditCar";
 import Register from "../pages/Register";
+import CreateAdminPage from "../pages/CreateAdminPage";
 
 const Root = () => {
   return (
@@ -18,6 +19,7 @@ const Root = () => {
       <Route path="/cars" element={<CarList />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/create-admin" element={<CreateAdminPage />} />
       <Route path="/admin" element={<PrivateRoutes />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="cars" element={<CarManage />}>

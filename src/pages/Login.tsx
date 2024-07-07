@@ -97,7 +97,7 @@ const Login = () => {
             </svg>
 
             <h3 className="text-start fw-bold" style={{ marginBottom: "32px" }}>
-              Welcome, Admin BCR
+              Welcome, to BCR
             </h3>
             {msg && (
               <div className="mb-4" style={{ backgroundColor: "#D00C1A1A" }}>
