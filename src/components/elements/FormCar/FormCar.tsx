@@ -1,3 +1,4 @@
+import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 import { IForm } from "../../../types/types";
 
@@ -15,7 +16,7 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
       <form onSubmit={handleSubmit}>
         <div className="row mb-3 align-items-center">
           <label className="col-sm-2 col-form-label">Nama</label>
-          <div className="col-sm-10 w-50">
+          <div className={`col-sm-10 ${styles.conInput}`}>
             <input
               type="text"
               className="form-control lh-lg px-2"
@@ -28,7 +29,7 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
         </div>
         <div className="row mb-3 align-items-center">
           <label className="col-sm-2 col-form-label">Harga</label>
-          <div className="col-sm-10 w-50">
+          <div className={`col-sm-10 ${styles.conInput}`}>
             <input
               type="number"
               className="form-control lh-lg px-2"
@@ -41,7 +42,7 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
         </div>
         <div className="row mb-3 align-items-center">
           <label className="col-sm-2 col-form-label">Size</label>
-          <div className="col-sm-10 w-50">
+          <div className={`col-sm-10 ${styles.conInput}`}>
             <select
               className="form-select lh-lg px-2"
               aria-label="Default select example"
@@ -58,7 +59,7 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
         </div>
         <div className="row mb-3 align-items-start">
           <label className="col-sm-2 col-form-label">Image</label>
-          <div className="col-sm-10 w-50">
+          <div className={`col-sm-10 ${styles.conInput}`}>
             <input
               type="file"
               className="form-control lh-lg px-2 mb-1"
@@ -71,7 +72,7 @@ const FormCar: React.FC<FormProps> = ({ data, handleChange, handleSubmit }) => {
           </div>
         </div>
 
-        <div className="w-25 d-flex gap-3 mt-5">
+        <div className={`${styles.conBtn} d-flex gap-3 mt-5`}>
           <Link
             to="/admin/cars"
             className="btn bg-transparent border-1 py-2 w-100"

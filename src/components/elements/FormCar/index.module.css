@@ -1,0 +1,25 @@
+.conInput {
+  width: 50%;
+}
+
+.conBtn {
+  width: 25%;
+}
+
+@media screen and (max-width: 670px) {
+  .conInput {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .conBtn {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .conBtn {
+    width: 100%;
+  }
+}

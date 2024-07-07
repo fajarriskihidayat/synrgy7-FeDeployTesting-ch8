@@ -72,10 +72,10 @@ const Navbar = () => {
                 </a>
               </li>
               {isLogin ? (
-                <div className="d-flex ">
-                  <div className="btn-group">
+                <div className="">
+                  <div className="btn-group d-flex flex-column">
                     <p
-                      className="btn dropdown-toggle fs-6 align-items-center d-flex gap-2 mb-0"
+                      className="btn dropdown-toggle fs-6 align-items-center d-flex gap-2 mb-0 px-0"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                       style={{ backgroundColor: "transparent", border: 0 }}
